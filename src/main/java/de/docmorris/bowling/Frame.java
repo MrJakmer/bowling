@@ -7,7 +7,7 @@ import java.util.Random;
 public class Frame {
     public static final int MAX_NUMBER_PINS = 10;
     private int pinsLeft = MAX_NUMBER_PINS;
-    private List<Roll> rolls = new ArrayList<>();
+    private final List<Roll> rolls = new ArrayList<>();
     private final boolean lastFrame;
     private boolean isStrike = false;
     private boolean isSpare = false;
@@ -36,9 +36,9 @@ public class Frame {
         pinsLeft -= roll.pinsThrown();
 
         if (rolls.isEmpty() && pinsLeft == 0) {
-            setStrike(true);
+            setStrike();
         } else if (rolls.size() == 1 && pinsLeft == 0) {
-            setSpare(true);
+            setSpare();
         }
 
         rolls.add(roll);
@@ -102,20 +102,20 @@ public class Frame {
         return result;
     }
 
-    private void setStrike(boolean strike) {
-        isStrike = strike;
+    /**
+     * Sets strike to true.
+     */
+    private void setStrike() {
+        isStrike = true;
     }
 
     /**
-     * Special handling for last frame case: Second roll might look like
-     * a spare but it's not if we already have a strike. Relevant for
-     * points.
-     *
-     * @param spare value of spare
+     * Sets spare  to true. Special handling for last frame case: Second roll might look like
+     * a spare, but it's not if we already have a strike. Relevant for points.
      */
-    private void setSpare(boolean spare) {
+    private void setSpare() {
         if (!isStrike()) {
-            isSpare = spare;
+            isSpare = true;
         }
     }
 
