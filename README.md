@@ -14,3 +14,4 @@ Alternativ update ich gerne die `pom.xml`, um via CLI bauen und starten zu könn
 - Die eigentlich komplexeste Methode `roll` in der Klasse `Frame` folgt nicht dem Single Level of Abstraction Principle. Das wäre noch zu optimieren.
 - In der Klasse `Frame` sind nur an einigen Stellen exemplarisch Javadoc.
 - `pom.xml` hat kein sauberes Versionsmanagement mit Properties.
+- `Frame` enthält noch einige magic numbers bzw. hard-coded Werte
