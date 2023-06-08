@@ -4,12 +4,8 @@ package de.docmorris.bowling;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        Frame frame = new Frame(true);
-        frame.roll(10);
-        System.out.println(frame);
-        frame.roll(5);
-        System.out.println(frame);
-        frame.roll(5);
-        System.out.println(frame);
+        Game game = new Game();
+        game.playWholeGame();
+        System.out.println(game);
     }
 }

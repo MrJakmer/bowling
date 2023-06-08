@@ -8,11 +8,17 @@ public class Frame {
     public static final int MAX_NUMBER_PINS = 10;
     private int pinsLeft = MAX_NUMBER_PINS;
     private List<Roll> rolls = new ArrayList<>();
-    private int pointsWon = 0;
     private final boolean lastFrame;
     private boolean isStrike = false;
     private boolean isSpare = false;
     private static final Random random = new Random();
+
+    /**
+     * Default Constructor for normal, non-last Frame.
+     */
+    public Frame() {
+        this(false);
+    }
 
     public Frame(final boolean lastFrame) {
         this.lastFrame = lastFrame;
@@ -28,7 +34,6 @@ public class Frame {
 
         final Roll roll = new Roll(pinsThrown);
         pinsLeft -= roll.pinsThrown();
-        pointsWon += roll.pinsThrown();
 
         if (rolls.isEmpty() && pinsLeft == 0) {
             setStrike(true);
@@ -80,12 +85,21 @@ public class Frame {
         return isSpare;
     }
 
+    /**
+     * @return Pins which can be thrown next shot.
+     */
     public int getPinsLeft() {
         return pinsLeft;
     }
 
     public int getPointsWon() {
-        return pointsWon;
+        int result = 0;
+
+        for (final var roll : rolls) {
+            result += roll.pinsThrown();
+        }
+
+        return result;
     }
 
     private void setStrike(boolean strike) {
@@ -110,7 +124,7 @@ public class Frame {
         return "Frame{" +
                 "pinsLeft=" + pinsLeft +
                 ", rolls=" + rolls +
-                ", pointsWon=" + pointsWon +
+                ", pointsWon=" + getPointsWon() +
                 ", lastFrame=" + lastFrame +
                 ", isStrike=" + isStrike +
                 ", isSpare=" + isSpare +
