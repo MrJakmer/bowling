@@ -96,7 +96,7 @@ public class Frame {
         int result = 0;
 
         for (final var roll : rolls) {
-            result += roll.pinsThrown();
+            result += roll.pinsThrown() * roll.getMultiplicator();
         }
 
         return result;
@@ -117,6 +117,10 @@ public class Frame {
         if (!isStrike()) {
             isSpare = true;
         }
+    }
+
+    public List<Roll> getRolls() {
+        return rolls;
     }
 
     @Override
