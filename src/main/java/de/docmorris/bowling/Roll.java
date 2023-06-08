@@ -19,22 +19,10 @@ public final class Roll {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (Roll) obj;
-        return this.pinsThrown == that.pinsThrown;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(pinsThrown);
-    }
-
-    @Override
     public String toString() {
-        return "Roll[" +
-                "pinsThrown=" + pinsThrown + ']';
+        return "Roll: " + pinsThrown +
+                (multiplicator != 1 ? "(x" + multiplicator +
+                        " wg. Strike/Spare)" : "");
     }
 
     public int getMultiplicator() {

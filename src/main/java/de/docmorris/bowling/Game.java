@@ -2,7 +2,6 @@ package de.docmorris.bowling;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Game {
     public static final int GAMES_PER_FRAME = 10;
@@ -44,9 +43,12 @@ public class Game {
     public String toString() {
         final var result = new StringBuilder();
 
-        for (final Frame frame : frames) {
-            result.append(frame.toString()).append("\n");
+        for (int i = 0; i < frames.size(); i++) {
+            Frame frame = frames.get(i);
+            result.append(i + 1).append(". ").append(frame.toString()).append("\n");
         }
+
+        result.append("Insgesamt wurden ").append(getAllPoints()).append(" Punkte erspielt.");
 
         return result.toString();
     }

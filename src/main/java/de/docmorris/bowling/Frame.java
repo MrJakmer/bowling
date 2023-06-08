@@ -125,13 +125,11 @@ public class Frame {
 
     @Override
     public String toString() {
-        return "Frame{" +
-                "pinsLeft=" + pinsLeft +
-                ", rolls=" + rolls +
+        return "Frame: " +
+                rolls +
+                ", pinsLeft=" + pinsLeft +
                 ", pointsWon=" + getPointsWon() +
-                ", lastFrame=" + lastFrame +
-                ", isStrike=" + isStrike +
-                ", isSpare=" + isSpare +
-                '}';
+                (isStrike ? " war ein Strike." : "") +
+                (isSpare ? " war ein Spare." : "");
     }
 }
